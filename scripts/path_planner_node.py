@@ -18,8 +18,8 @@ obstacle_array_y = []
 
 #################### Subscribing to the obstacle_node and obtaining coordinates of obstacles#######################
 def callback(msg):
-    obstacle_array_x.append(msg.x_coord)   # taking the values of the published list of obstacles
-    obstacle_array_y.append(msg.y_coord)
+	obstacle_array_x.append(msg.x_coord)   # taking the values of the published list of obstacles
+	obstacle_array_y.append(msg.y_coord)
 
 rospy.init_node('path_planner_node')                        # initialising subscriber node
 sub = rospy.Subscriber('obstacles', Obstacles, callback)    # subscribing to the 'obstacles' topic
@@ -35,7 +35,7 @@ parx = {}
 pary = {}
 
 def distance(x1, y1, x2, y2):
-    return math.sqrt(((x1-x2)*(x1-x2))+((y1-y2)*(y1-y2)))
+	return math.sqrt(((x1-x2)*(x1-x2))+((y1-y2)*(y1-y2)))
 
 def inside_circle(robLocx, robLocy, obsx, obsy):
 	circ = Circle((obsx, obsy), radius = 0.25)
