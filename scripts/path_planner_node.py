@@ -67,7 +67,7 @@ for i in range(0, 3000):
 			treex.append(treex[i-1])  # add the previous node. Without this, python gives an index error
 			treey.append(treey[i-1])
 			obstacle_check = 1
-		continue
+			break
 
 	if obstacle_check == 1:     # if the generated point is in any obstacle, skip following steps
 		obstacle_check = 0
