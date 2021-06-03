@@ -54,8 +54,8 @@ for i in range(0, 3000):
     	for j in range(0, i):
 		dist = distance(treex[j], treey[j], x, y)    # distance between random point and current node
 		if mindist >= dist:                          # find a point that is closest to the randomly generated point
-		    mindist = dist
-		    a = j                                    # note the index of this point
+			mindist = dist
+			a = j                                    # note the index of this point
 	mindist = 1000                                   # reset the minimum distance back to a very large number
 
 	alpha = treex[a] + ((x - treex[a]) / distance(treex[a], treey[a], x, y))
