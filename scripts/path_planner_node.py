@@ -1,13 +1,9 @@
+#!/usr/bin/env python
+
 from matplotlib import pyplot as plt
 from shapely.geometry import LineString
 from shapely.geometry import Point
-from shapely.geometry import MultiPolygon
-from shapely.geometry import box
-from shapely.geometry import Polygon
-from shapely.geometry import LinearRing
-from shapely.geometry import MultiLineString
-from shapely.ops import polygonize
-from shapely.ops import cascaded_union
+from matplotlib.patches import Circle
 import random
 import numpy as np
 import math
@@ -20,16 +16,7 @@ treey = [0]
 obstacle_array_x = []    # initialising the list of obstacles obtained from the obstacle node
 obstacle_array_y = []
 
-'''
-
-
-
-Subscribing and getting the obstacle points
-
-
-
-'''
-
+#################### Subscribing to the obstacle_node and obtaining coordinates of obstacles#######################
 def callback(msg):
     obstacle_array_x.append(msg.x_coord)   # taking the values of the published list of obstacles
     obstacle_array_y.append(msg.y_coord)
@@ -38,6 +25,7 @@ rospy.init_node('path_planner_node')                        # initialising subsc
 sub = rospy.Subscriber('obstacles', Obstacles, callback)    # subscribing to the 'obstacles' topic
 rospy.spin()                                                # preventing exit of node until shutdown
 
+############################# Rapidly exploring Random Trees Algorithm ###########################################
 count = 0
 a = 0
 mindist = 1000
@@ -96,13 +84,13 @@ for i in range(0, 3000):
         key_listx = list(parx.keys())
         key_listy = list(pary.keys())
         val_listx = list(parx.values())
-        val_listy = list(pary.values())
+        val_listy = list(pary.values())     # taking values of the nodes in the parent tree to obtain the path
         rx = alpha
         ry = beta
-        colourtreex = []
+        colourtreex = []                    # path that will be published
         colourtreey = []
 
-        '''
+        
         for cntr in range(0, i-1):  #change: changed count-1 to i-1
             
             if rx == 50 and ry == 50:
@@ -115,18 +103,20 @@ for i in range(0, 3000):
             colourtreex.append(abcx)
             colourtreey.append(abcy)
 
-        
+        '''
         for cntr2 in range(0, cntr-1):
             plt.plot([colourtreex[cntr2], colourtreex[cntr2+1]], [colourtreey[cntr2], colourtreey[cntr2+1]])
+
         '''
         # plotting using matplotlib
-
-
+        
         '''
 
+        
 
 
-        above plotting loop will also be used for publishing the path
+
+        parts of the above plotting loop will also be used for publishing the path
 
 
 
