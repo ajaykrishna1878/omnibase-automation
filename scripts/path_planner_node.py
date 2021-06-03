@@ -49,79 +49,79 @@ obstacle_check = 0
 
 for i in range(0, 3000):
 	x = round(random.uniform(0, 100), 3)   # randomly generate x coordinate of point
-    y = round(random.uniform(0, 100), 3)   # randomly generate y coordinate of point
+	y = round(random.uniform(0, 100), 3)   # randomly generate y coordinate of point
 
-    for j in range(0, i):
-        dist = distance(treex[j], treey[j], x, y)    # distance between random point and current node
-        if mindist >= dist:                          # find a point that is closest to the randomly generated point
-            mindist = dist
-            a = j                                    # note the index of this point
-    mindist = 1000                                   # reset the minimum distance back to a very large number
+    	for j in range(0, i):
+		dist = distance(treex[j], treey[j], x, y)    # distance between random point and current node
+		if mindist >= dist:                          # find a point that is closest to the randomly generated point
+		    mindist = dist
+		    a = j                                    # note the index of this point
+	mindist = 1000                                   # reset the minimum distance back to a very large number
 
-    alpha = treex[a] + ((x - treex[a]) / distance(treex[a], treey[a], x, y))
-    beta = treey[a] + ((y - treey[a]) / distance(treex[a], treey[a], x, y))
-    # scaling down the randomly generated point such that the maximum distance between each point is 1
+	alpha = treex[a] + ((x - treex[a]) / distance(treex[a], treey[a], x, y))
+	beta = treey[a] + ((y - treey[a]) / distance(treex[a], treey[a], x, y))
+	# scaling down the randomly generated point such that the maximum distance between each point is 1
 
-    for k in range(0, 14):
-    	if inside_circle(alpha, beta, obstacle_array_x, obstacle_array_y) == True:  # if point is inside the obstacle circle
-    		treex.append(treex[i-1])  # add the previous node. Without this, python gives an index error
-    		treey.append(treey[i-1])
-    		obstacle_check = 1
-            continue
+	for k in range(0, 14):
+		if inside_circle(alpha, beta, obstacle_array_x, obstacle_array_y) == True:  # if point is inside the obstacle circle
+			treex.append(treex[i-1])  # add the previous node. Without this, python gives an index error
+			treey.append(treey[i-1])
+			obstacle_check = 1
+		continue
 
-    if obstacle_check == 1:     # if the generated point is in any obstacle, skip following steps
-        obstacle_check = 0
-        continue
+	if obstacle_check == 1:     # if the generated point is in any obstacle, skip following steps
+		obstacle_check = 0
+		continue
 
-    treex.append(alpha)
-    treey.append(beta)
+	treex.append(alpha)
+	treey.append(beta)
 
-    parx[alpha] = treex[a]
-    pary[beta] = treey[a]
-    # adding the point to the parent tree array
+	parx[alpha] = treex[a]
+	pary[beta] = treey[a]
+	# adding the point to the parent tree array
 
-    if goalRegion(alpha, beta) == True:
-        key_listx = list(parx.keys())
-        key_listy = list(pary.keys())
-        val_listx = list(parx.values())
-        val_listy = list(pary.values())     # taking values of the nodes in the parent tree to obtain the path
-        rx = alpha
-        ry = beta
-        colourtreex = []                    # path that will be published
-        colourtreey = []
-
-        
-        for cntr in range(0, i-1):  #change: changed count-1 to i-1
-            
-            if rx == 50 and ry == 50:
-                break
-            abcx = val_listx[key_listx.index(rx)]
-            rx = abcx
-            abcy = val_listy[key_listy.index(ry)]
-            ry = abcy
-
-            colourtreex.append(abcx)
-            colourtreey.append(abcy)
-
-        '''
-        for cntr2 in range(0, cntr-1):
-            plt.plot([colourtreex[cntr2], colourtreex[cntr2+1]], [colourtreey[cntr2], colourtreey[cntr2+1]])
-
-        '''
-        # plotting using matplotlib
-        
-        '''
-
-        
+	if goalRegion(alpha, beta) == True:
+		key_listx = list(parx.keys())
+		key_listy = list(pary.keys())
+		val_listx = list(parx.values())
+		val_listy = list(pary.values())     # taking values of the nodes in the parent tree to obtain the path
+		rx = alpha
+		ry = beta
+		colourtreex = []                    # path that will be published
+		colourtreey = []
 
 
+		for cntr in range(0, i-1):  #change: changed count-1 to i-1
 
-        parts of the above plotting loop will also be used for publishing the path
+			if rx == 50 and ry == 50:
+				break
+			abcx = val_listx[key_listx.index(rx)]
+			rx = abcx
+			abcy = val_listy[key_listy.index(ry)]
+			ry = abcy
+
+			colourtreex.append(abcx)
+			colourtreey.append(abcy)
+
+		'''
+		for cntr2 in range(0, cntr-1):
+		    plt.plot([colourtreex[cntr2], colourtreex[cntr2+1]], [colourtreey[cntr2], colourtreey[cntr2+1]])
+
+		'''
+		# plotting using matplotlib
+
+		'''
 
 
 
 
-        '''
 
-        break
-        # end the loop if goal point is reached
+		parts of the above plotting loop will also be used for publishing the path
+
+
+
+
+		'''
+
+		break
+		# end the loop if goal point is reached
