@@ -1,7 +1,7 @@
 <launch>
 	<node 
 			name="obstacle_node"
-			pkg="omnibase_automation"
+			pkg="omnibase-automation"
 			type="obstacle_node.py"
 			output="screen"
 	/>
@@ -9,7 +9,7 @@
 
 	<node
 			name="path_planner_node"
-			pkg="omnibase_automation"
+			pkg="omnibase-automation"
 			type="path_planner_node.py"
 			output="screen"
 	/>
