@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>ros_hackathon</name>
+  <name>omnibase-automation</name>
+  <!-- Possible error!!! Initially was "<name>ros_hackathon</name>" -->
   <version>0.0.0</version>
-  <description>The ros_hackathon package</description>
+  <description>The omnibase-automation package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
