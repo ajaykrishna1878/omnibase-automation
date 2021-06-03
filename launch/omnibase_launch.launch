@@ -1,0 +1,16 @@
+<launch>
+	<node 
+			name="obstacle_node"
+			pkg="omnibase_automation"
+			type="obstacle_node.py"
+			output="screen"
+	/>
+	<!-- output="screen" tells ROS to display the output to the terminal window instead of inside special files -->
+
+	<node
+			name="path_planner_node"
+			pkg="omnibase_automation"
+			type="path_planner_node.py"
+			output="screen"
+	/>
+</launch>
